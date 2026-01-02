@@ -1,4 +1,4 @@
-name: default
+name: ens_retrieval_v1
 
 model: ens # str, either 'hres' or 'ens'
 level: surface # str, only surface is supported for now

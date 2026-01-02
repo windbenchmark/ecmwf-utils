@@ -1,4 +1,4 @@
-name: default
+name: hres_retrieval_v1
 
 model: hres # str, either 'hres' or 'ens'
 level: surface # str, only surface is supported for now
