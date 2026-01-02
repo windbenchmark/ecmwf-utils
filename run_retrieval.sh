@@ -4,3 +4,5 @@
 cd "$(dirname "$0")"
 # Run the ECMWF retrieval command in the ecmwf-utils environment
 mamba run -n ecmwf-utils python -m src retrieval --query-path ./queries/kelmarsh-full.json --config-path ./config/config_hres.yml
+
+
