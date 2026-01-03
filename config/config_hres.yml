@@ -21,7 +21,6 @@ variables:
     "tp",
     "100u",
     "100v",
-    "z0", # surface roughness
     "sp", # surface pressure
     "blh" # boundary layer height
   ]
