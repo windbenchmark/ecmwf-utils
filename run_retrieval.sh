@@ -3,6 +3,6 @@
 # Navigate to the script's directory ensuring relative paths work correctly
 cd "$(dirname "$0")"
 # Run the ECMWF retrieval command in the ecmwf-utils environment
-mamba run -n ecmwf-utils python -m src retrieval --skip-cost --query-path ./queries/kelmarsh-full.json --config-path ./config/config_hres.yml
+mamba run -n ecmwf-utils python -m src retrieval --skip-cost --query-path ./queries/penmanshiel-full.json --config-path ./config/config_hres_10d.yml
 
 
