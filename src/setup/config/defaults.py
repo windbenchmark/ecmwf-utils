@@ -7,6 +7,7 @@ ALLOWED_RETRIEVAL_MODES = ["point", "grid"]
 DEFAULT_FORMAT = "netcdf"
 ALLOWED_FORMATS = ["grib2", "netcdf"]
 
+DEFAULT_CONFIG_PATH = "./config/config_hres.yml"
 DEFAULT_LOG_PATH = "./logs/DEBUG.log"
 DEFAULT_QUERY_PATH = "./queries/default.json"
 DEFAULT_LANDING_PATH = "./data/landing/"
