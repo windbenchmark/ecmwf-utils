@@ -10,6 +10,17 @@ from ..setup import PipelineConfig
 from ..query import Query
 
 
+def open_dataset_safe(file_path: Path) -> xr.Dataset:
+    """ Open an xarray Dataset based on suffix and with error handling. """
+    suffix = file_path.suffix.lower()
+    if suffix in {".nc", ".nc4", ".netcdf"}:
+        return xr.open_dataset(file_path)
+    elif suffix in {".grib", ".grb", ".grib2", ".grb2"}:
+        return xr.open_dataset(file_path, engine="cfgrib")
+    else:
+        logger.error(f"Unsupported file format: {suffix} for file {file_path}")
+        raise ValueError(f"Unsupported file format: {suffix} for file {file_path}")
+
 def run_preprocessing(
     config: PipelineConfig,
 ):
@@ -39,6 +50,7 @@ def run_preprocessing(
 
     # Iterate over index
     for _, row in index_df.iterrows():
+        logger.debug(f"Preprocessing index row: {row.to_dict()}")
         try:
             if row['entry_id'] in staging_df['entry_id'].values:
                 logger.debug(f"Entry {row['entry_id']} already in staging. Skipping.")
@@ -55,7 +67,7 @@ def run_preprocessing(
             if not data_path.exists():
                 logger.error(f"Data file {data_path} does not exist. Skipping entry {row['entry_id']}.")
                 continue
-            data = xr.open_dataset(data_path)
+            data = open_dataset_safe(data_path)
             logger.debug(f"Opened data file {data_path} with variables: {list(data.data_vars)}.")
 
             # Interpolation
