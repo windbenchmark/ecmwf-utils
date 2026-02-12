@@ -1,4 +1,4 @@
-name: default
+name: hres_retrieval_v1
 
 model: hres # str, either 'hres' or 'ens'
 level: surface # str, only surface is supported for now
@@ -9,13 +9,6 @@ format: grib2 # str, either 'grib2' or 'netcdf'
 
 variables:
   [
-    "mx2t3",
-    "mn2t3",
-    "10fg3",
-    "10fg",
-    "mx2t6",
-    "mn2t6",
-    "10fg6",
     "sd",
     "sf",
     "cp",
@@ -25,11 +18,11 @@ variables:
     "10v",
     "2t",
     "2d",
-    "mx2t",
-    "mn2t",
     "tp",
     "100u",
     "100v",
+    "sp", # surface pressure
+    "blh" # boundary layer height
   ]
 
 issue_hours: ["00", "12"] # list of str, e.g. ["00", "06", "12", "18"] for 4 times a day
