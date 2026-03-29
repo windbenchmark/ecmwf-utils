@@ -6,13 +6,22 @@ import yaml
 from dotenv import load_dotenv
 
 from .schema import PipelineConfig
+from .defaults import DEFAULT_CONFIG_PATH
 
 
 def load_config(args: argparse.Namespace = None) -> PipelineConfig:
-    # Load YAML configuration
-    path = Path(args.config_path) if args and args.config_path else Path(__file__).parent.parent.parent.parent / "config" / "config.yml"
-    with path.open("r") as f:
-        config_dict = yaml.safe_load(f)
+    # Load YAML configuration if "retrieval" command is used
+    if args and args.command == "retrieval":
+        if hasattr(args, "config_path") and args.config_path:
+            path: Path = Path(args.config_path)
+        else:
+            path = Path(DEFAULT_CONFIG_PATH)
+
+        with path.open("r") as f:
+            config_dict = yaml.safe_load(f)
+
+    else:
+        config_dict = {}
 
     # Load environment variables
     load_dotenv(override=True)
